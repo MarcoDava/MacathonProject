@@ -1,0 +1,7 @@
+import type * as ElevenLabs from "../index";
+export interface ObjectJsonSchemaPropertyOutput {
+    type?: "object";
+    required?: string[];
+    description?: string;
+    properties?: Record<string, ElevenLabs.ObjectJsonSchemaPropertyOutputPropertiesValue>;
+}

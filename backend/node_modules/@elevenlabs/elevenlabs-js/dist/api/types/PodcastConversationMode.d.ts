@@ -1,0 +1,5 @@
+import type * as ElevenLabs from "../index";
+export interface PodcastConversationMode {
+    /** The voice settings for the conversation. */
+    conversation: ElevenLabs.PodcastConversationModeData;
+}

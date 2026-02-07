@@ -1,0 +1,7 @@
+import type * as ElevenLabs from "../index";
+export interface ReaderResourceResponseModel {
+    /** The type of resource. */
+    resourceType: ElevenLabs.ReaderResourceResponseModelResourceType;
+    /** The ID of the resource. */
+    resourceId: string;
+}

@@ -1,0 +1,5 @@
+import type * as ElevenLabs from "../index";
+export interface LlmUsageCalculatorLlmResponseModel {
+    llm: ElevenLabs.Llm;
+    pricePerMinute: number;
+}

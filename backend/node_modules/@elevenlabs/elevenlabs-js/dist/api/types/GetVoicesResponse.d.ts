@@ -1,0 +1,5 @@
+import type * as ElevenLabs from "../index";
+export interface GetVoicesResponse {
+    /** A list of available voices. */
+    voices: ElevenLabs.Voice[];
+}

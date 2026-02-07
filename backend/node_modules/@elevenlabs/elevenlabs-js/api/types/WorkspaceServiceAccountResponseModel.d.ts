@@ -1,0 +1,7 @@
+import type * as ElevenLabs from "../index";
+export interface WorkspaceServiceAccountResponseModel {
+    serviceAccountUserId: string;
+    name: string;
+    createdAtUnix?: number;
+    apiKeys: ElevenLabs.WorkspaceApiKeyResponseModel[];
+}
