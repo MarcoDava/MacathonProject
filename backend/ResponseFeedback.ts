@@ -1,11 +1,16 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
-// Initialize Gemini
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
-const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+// REMOVE THE GLOBAL INITIALIZATION HERE
+// const genAI = ... (delete this)
+// const model = ... (delete this)
 
 export const generateFeedback = async (originalQuestion: string, userSpeech: string): Promise<string> => {
   
+  // MOVED INSIDE: Now it only runs when the function is called!
+  // At this point, the .env file is guaranteed to be loaded.
+  const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
+  const model = genAI.getGenerativeModel({ model: "gemini-3-flash-preview" });
+
   // 1. Construct a specific prompt for "What went wrong"
   const prompt = `
     You are a strict but helpful interview coach.

@@ -1,5 +1,10 @@
 {
   "dependencies": {
     "@google/genai": "^1.40.0"
+  },
+  "devDependencies": {
+    "dotenv": "^17.2.4",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.21.0"
   }
 }
