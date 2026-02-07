@@ -1,0 +1,5 @@
+import type * as ElevenLabs from "../index";
+export interface CaptionStyleVerticalPlacementModel {
+    align: ElevenLabs.CaptionStyleVerticalPlacementModelAlign;
+    translatePct: number;
+}

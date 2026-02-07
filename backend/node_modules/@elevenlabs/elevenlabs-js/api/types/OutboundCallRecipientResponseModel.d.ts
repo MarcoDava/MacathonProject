@@ -1,0 +1,11 @@
+import type * as ElevenLabs from "../index";
+export interface OutboundCallRecipientResponseModel {
+    id: string;
+    phoneNumber?: string;
+    whatsappUserId?: string;
+    status: ElevenLabs.BatchCallRecipientStatus;
+    createdAtUnix: number;
+    updatedAtUnix: number;
+    conversationId?: string;
+    conversationInitiationClientData?: ElevenLabs.ConversationInitiationClientDataInternal;
+}

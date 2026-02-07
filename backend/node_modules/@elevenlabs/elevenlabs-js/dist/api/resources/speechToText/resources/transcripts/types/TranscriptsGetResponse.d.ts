@@ -1,0 +1,2 @@
+import type * as ElevenLabs from "../../../../../index";
+export type TranscriptsGetResponse = ElevenLabs.SpeechToTextChunkResponseModel | ElevenLabs.MultichannelSpeechToTextResponseModel;

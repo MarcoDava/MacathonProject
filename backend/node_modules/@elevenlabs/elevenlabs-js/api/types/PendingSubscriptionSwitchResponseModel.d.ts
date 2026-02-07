@@ -1,0 +1,10 @@
+import type * as ElevenLabs from "../index";
+export interface PendingSubscriptionSwitchResponseModel {
+    kind?: "change";
+    /** The tier to change to. */
+    nextTier: ElevenLabs.PendingSubscriptionSwitchResponseModelNextTier;
+    /** The billing period to change to. */
+    nextBillingPeriod: ElevenLabs.BillingPeriod;
+    /** The timestamp of the change. */
+    timestampSeconds: number;
+}

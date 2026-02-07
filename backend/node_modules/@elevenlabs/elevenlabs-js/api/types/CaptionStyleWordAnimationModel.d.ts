@@ -1,0 +1,5 @@
+import type * as ElevenLabs from "../index";
+export interface CaptionStyleWordAnimationModel {
+    enterType: ElevenLabs.CaptionStyleWordAnimationModelEnterType;
+    exitType: ElevenLabs.CaptionStyleWordAnimationModelExitType;
+}

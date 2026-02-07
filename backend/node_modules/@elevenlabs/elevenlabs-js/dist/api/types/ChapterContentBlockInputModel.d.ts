@@ -1,0 +1,6 @@
+import type * as ElevenLabs from "../index";
+export interface ChapterContentBlockInputModel {
+    subType?: ElevenLabs.ChapterContentBlockInputModelSubType;
+    nodes: ElevenLabs.ChapterContentParagraphTtsNodeInputModel[];
+    blockId?: string;
+}

@@ -1,0 +1,7 @@
+import type * as ElevenLabs from "../index";
+export interface DependentPhoneNumberIdentifier {
+    phoneNumberId: string;
+    phoneNumber: string;
+    label: string;
+    provider: ElevenLabs.TelephonyProvider;
+}

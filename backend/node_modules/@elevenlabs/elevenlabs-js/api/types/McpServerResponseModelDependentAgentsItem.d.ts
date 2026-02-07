@@ -1,0 +1,10 @@
+import type * as ElevenLabs from "../index";
+export type McpServerResponseModelDependentAgentsItem = ElevenLabs.McpServerResponseModelDependentAgentsItem.Available | ElevenLabs.McpServerResponseModelDependentAgentsItem.Unknown;
+export declare namespace McpServerResponseModelDependentAgentsItem {
+    interface Available extends ElevenLabs.DependentAvailableAgentIdentifier {
+        type: "available";
+    }
+    interface Unknown extends ElevenLabs.DependentUnknownAgentIdentifier {
+        type: "unknown";
+    }
+}

@@ -1,0 +1,6 @@
+import type * as ElevenLabs from "../index";
+export interface GetTestsPageResponseModel {
+    tests: ElevenLabs.UnitTestSummaryResponseModel[];
+    nextCursor?: string;
+    hasMore: boolean;
+}

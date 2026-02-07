@@ -1,0 +1,6 @@
+import type * as ElevenLabs from "../index";
+export interface GetToolDependentAgentsResponseModel {
+    agents: ElevenLabs.GetToolDependentAgentsResponseModelAgentsItem[];
+    nextCursor?: string;
+    hasMore: boolean;
+}
