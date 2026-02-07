@@ -1,0 +1,9 @@
+import type * as ElevenLabs from "../index";
+export interface GetConvAiSettingsResponseModel {
+    conversationInitiationClientDataWebhook?: ElevenLabs.ConversationInitiationClientDataWebhook;
+    webhooks?: ElevenLabs.ConvAiWebhooks;
+    /** Whether the workspace can use MCP servers */
+    canUseMcpServers?: boolean;
+    ragRetentionPeriodDays?: number;
+    defaultLivekitStack?: ElevenLabs.LivekitStackType;
+}

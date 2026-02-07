@@ -1,0 +1,6 @@
+import type * as ElevenLabs from "../index";
+export interface ArrayJsonSchemaPropertyOutput {
+    type?: "array";
+    description?: string;
+    items: ElevenLabs.ArrayJsonSchemaPropertyOutputItems;
+}

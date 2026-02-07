@@ -1,0 +1,12 @@
+import type * as ElevenLabs from "../index";
+export interface PronunciationDictionaryVersionResponseModel {
+    versionId: string;
+    versionRulesNum: number;
+    pronunciationDictionaryId: string;
+    dictionaryName: string;
+    versionName: string;
+    permissionOnResource?: ElevenLabs.PronunciationDictionaryVersionResponseModelPermissionOnResource;
+    createdBy: string;
+    creationTimeUnix: number;
+    archivedTimeUnix?: number;
+}

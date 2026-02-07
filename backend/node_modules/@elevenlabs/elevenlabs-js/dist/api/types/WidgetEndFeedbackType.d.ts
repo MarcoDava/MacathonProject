@@ -1,0 +1,1 @@
+export type WidgetEndFeedbackType = "rating";

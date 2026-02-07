@@ -1,0 +1,6 @@
+import type * as ElevenLabs from "../index";
+export interface ValidationError {
+    loc: ElevenLabs.ValidationErrorLocItem[];
+    msg: string;
+    type: string;
+}

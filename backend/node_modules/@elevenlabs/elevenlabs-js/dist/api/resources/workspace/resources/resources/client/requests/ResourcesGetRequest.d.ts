@@ -1,0 +1,11 @@
+import type * as ElevenLabs from "../../../../../../index";
+/**
+ * @example
+ *     {
+ *         resourceType: "voice"
+ *     }
+ */
+export interface ResourcesGetRequest {
+    /** Resource type of the target resource. */
+    resourceType: ElevenLabs.WorkspaceResourceType;
+}

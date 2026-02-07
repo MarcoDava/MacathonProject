@@ -1,0 +1,16 @@
+import type * as ElevenLabs from "../index";
+/**
+ * The avatar of the widget
+ */
+export type WidgetConfigOutputAvatar = ElevenLabs.WidgetConfigOutputAvatar.Orb | ElevenLabs.WidgetConfigOutputAvatar.Url | ElevenLabs.WidgetConfigOutputAvatar.Image;
+export declare namespace WidgetConfigOutputAvatar {
+    interface Orb extends ElevenLabs.OrbAvatar {
+        type: "orb";
+    }
+    interface Url extends ElevenLabs.UrlAvatar {
+        type: "url";
+    }
+    interface Image extends ElevenLabs.ImageAvatar {
+        type: "image";
+    }
+}

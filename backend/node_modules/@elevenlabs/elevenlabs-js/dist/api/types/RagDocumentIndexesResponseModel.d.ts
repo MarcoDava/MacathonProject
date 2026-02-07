@@ -1,0 +1,4 @@
+import type * as ElevenLabs from "../index";
+export interface RagDocumentIndexesResponseModel {
+    indexes: ElevenLabs.RagDocumentIndexResponseModel[];
+}
