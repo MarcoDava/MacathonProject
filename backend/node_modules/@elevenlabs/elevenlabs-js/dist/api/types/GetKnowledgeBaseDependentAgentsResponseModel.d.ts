@@ -1,0 +1,6 @@
+import type * as ElevenLabs from "../index";
+export interface GetKnowledgeBaseDependentAgentsResponseModel {
+    agents: ElevenLabs.GetKnowledgeBaseDependentAgentsResponseModelAgentsItem[];
+    nextCursor?: string;
+    hasMore: boolean;
+}

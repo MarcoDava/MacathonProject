@@ -1,0 +1,2 @@
+import type * as ElevenLabs from "../index";
+export type ConversationInitiationClientDataWebhookRequestHeadersValue = string | ElevenLabs.ConvAiSecretLocator;

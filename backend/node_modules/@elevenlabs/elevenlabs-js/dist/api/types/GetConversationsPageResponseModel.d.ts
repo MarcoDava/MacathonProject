@@ -1,0 +1,6 @@
+import type * as ElevenLabs from "../index";
+export interface GetConversationsPageResponseModel {
+    conversations: ElevenLabs.ConversationSummaryResponseModel[];
+    nextCursor?: string;
+    hasMore: boolean;
+}

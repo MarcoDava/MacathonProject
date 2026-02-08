@@ -1,5 +1,7 @@
 {
   "dependencies": {
-    "@google/genai": "^1.40.0"
+    "@elevenlabs/elevenlabs-js": "^2.34.0",
+    "@google/genai": "^1.40.0",
+    "dotenv": "^17.2.4"
   }
 }

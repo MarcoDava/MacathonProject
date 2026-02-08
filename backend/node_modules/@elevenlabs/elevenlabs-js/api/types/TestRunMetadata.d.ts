@@ -1,0 +1,7 @@
+import type * as ElevenLabs from "../index";
+export interface TestRunMetadata {
+    workspaceId: string;
+    testName: string;
+    ranByUserEmail: string;
+    testType?: ElevenLabs.TestRunMetadataTestType;
+}

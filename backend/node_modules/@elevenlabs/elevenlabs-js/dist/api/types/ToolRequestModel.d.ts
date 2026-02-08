@@ -1,0 +1,5 @@
+import type * as ElevenLabs from "../index";
+export interface ToolRequestModel {
+    /** Configuration for the tool */
+    toolConfig: ElevenLabs.ToolRequestModelToolConfig;
+}
