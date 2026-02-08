@@ -7,13 +7,15 @@ import HexagonBackground from "./Components/ui/hexagon";
 function App() {
 
   return (
-    <div>
+    <div className="m-0 p-0 w-[100vw] h-full min-h-[100vh] flex justify-between items-start text-white flex-col">
       <Navbar />
       <HexagonBackground />
-      <div className="container mx-auto px-4 py-16 relative z-10">
+      <div className="w-full z-10 flex justify-center items-center">
         <Outlet />
       </div>
-      <Footer />
+      <div className="w-full z-10">
+        <Footer />
+      </div>
     </div>
   );
 }
