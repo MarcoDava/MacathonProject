@@ -2,6 +2,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
+
 const InterviewPage = () => {
   const [questions, setQuestions] = useState([]);
   const [currentIdx, setCurrentIdx] = useState(0);
@@ -13,7 +14,50 @@ const InterviewPage = () => {
   const navigate = useNavigate();
 
   const recognitionRef = useRef<any>(null);
+  const [isSpeaking, setIsSpeaking] = useState(false);  
+const [character, setCharacter] = useState<any>(null);
 
+
+  useEffect(() => {
+    // Get the character object we saved in CharactersPage
+    const savedChar = localStorage.getItem("selectedCharacter");
+    if (savedChar) {
+      setCharacter(JSON.parse(savedChar));
+    }
+  }, []);
+
+  const playAIQuestion = async (text: string) => {
+    if (!character) return;
+    
+    setIsSpeaking(true); 
+    try {
+      const res = await fetch("http://localhost:3000/api/ask-question", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ 
+          question: text, 
+          voiceId: character.id // Pass the specific character's voice ID
+        }),
+      });
+
+      if (!res.ok) throw new Error("Audio fetch failed");
+
+      const blob = await res.blob();
+      const audio = new Audio(URL.createObjectURL(blob));
+      
+      audio.onended = () => {
+        setIsSpeaking(false); 
+        setPhase("countdown");
+      };
+      audio.play();
+    } catch (err) {
+      console.error(err);
+      setIsSpeaking(false);
+      setPhase("countdown"); // Move on even if audio fails
+    }
+  };
+
+  
   useEffect(() => {
     const saved = localStorage.getItem("interviewQuestions");
     if (saved) {
@@ -29,18 +73,7 @@ const InterviewPage = () => {
     }
   }, [currentIdx, phase]);
 
-  const playAIQuestion = async (text: string) => {
-    const voiceId = localStorage.getItem("selectedVoiceId") || "JBFqnCBsd6RMkjVDRZzb";
-    const res = await fetch("http://localhost:3000/api/ask-question", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ question: text, voiceId }),
-    });
-    const blob = await res.blob();
-    const audio = new Audio(URL.createObjectURL(blob));
-    audio.onended = () => setPhase("countdown"); // Start countdown after AI finishes
-    audio.play();
-  };
+  
 
   // 2. 3-Second Countdown Logic
   useEffect(() => {
@@ -91,18 +124,38 @@ const InterviewPage = () => {
       navigate("/feedback");
     }
   };
+  // Inside InterviewPage.tsx
+
+
+
 
   if (!questions.length) return <div className="p-20 text-center">Loading Interview...</div>;
 
+ 
   return (
-    <div className="h-screen w-full flex flex-col items-center justify-center p-10 text-white">
+    <div className="h-screen w-full flex flex-col items-center justify-center p-10 text-white mb-[10vh]">
       <div className="max-w-2xl w-full text-center">
+        {/* CHARACTER IMAGE DISPLAY */}
+        {character && (
+          <div className="mb-8 relative flex justify-center">
+            <img 
+              src={character.img} 
+              alt={character.name}
+              className={`w-64 h-64 rounded-full border-4 object-cover transition-all duration-75
+                ${isSpeaking ? "border-yellow-400 scale-105 animate-pulse" : "border-gray-700"}`}
+            />
+            {isSpeaking && (
+              <div className="absolute bottom-0 bg-yellow-500 text-black px-4 py-1 rounded-full font-bold text-sm">
+                {character.name.toUpperCase()} IS TALKING...
+              </div>
+            )}
+          </div>)}
         <h2 className="text-gray-400 mb-4">Question {currentIdx + 1} of {questions.length}</h2>
         <h1 className="text-3xl font-bold mb-10">{questions[currentIdx].question}</h1>
 
         {phase === "speaking" && <div className="animate-pulse text-blue-400 text-xl">Interviewer is speaking...</div>}
 
-        {phase === "countdown" && <div className="text-6xl font-black text-yellow-500">Recording in: {countdown}</div>}
+        {phase === "countdown" && <div className="text-6xl font-white text-yellow-500">Recording in: {countdown}</div>}
 
         {phase === "recording" && (
           <div className="space-y-6">

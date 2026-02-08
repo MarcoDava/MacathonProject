@@ -7,11 +7,21 @@ const JobDescriptionPage = () => {
   const navigate = useNavigate();
 
   const startInterview = async () => {
+    
+    const voiceId = localStorage.getItem("selectedVoiceId");
+    if (!voiceId) {
+    alert("Please go back and select a character first!");
+    return;
+    }
     const response = await fetch("http://localhost:3000/api/generate-questions", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ jobDescription: text }),
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ 
+        jobDescription: text,
+        voiceId: voiceId // THIS IS KEY
+        }),
     });
+
     const data = await response.json();
     if (data.questions) {
       localStorage.setItem("interviewQuestions", JSON.stringify(data.questions));
