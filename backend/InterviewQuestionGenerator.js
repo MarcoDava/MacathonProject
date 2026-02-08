@@ -1,32 +1,47 @@
+import express from 'express';
+import cors from 'cors';
 import dotenv from 'dotenv';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-dotenv.config({ path: path.join(__dirname, '.env') });
+dotenv.config();
 
-import { GoogleGenAI } from "@google/genai";
+const app = express();
+app.use(cors());
+app.use(express.json());
 
-  // The client gets the API key from the environment variable `GEMINI_API_KEY`.
-  //console.log('API Key loaded:', process.env.GEMINI_API_KEY ? 'YES' : 'NOT FOUND');
-  const ai = new GoogleGenAI({});
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
-  async function generateInterviewQuestions(jobDescription) {
-    const response = await ai.models.generateContent({
-      model: "gemini-3-flash-preview",
-      contents: `Create a list of 10 interview questions for a ${jobDescription}, each separated by a new line`
-    });
+// Generate interview questions endpoint
+app.post('/api/generate-questions', async (req, res) => {
+  const { jobDescription } = req.body;
 
-    //console.log(response.text);
-    return response.text;
+  if (!jobDescription) {
+    return res.status(400).json({ error: 'Job description is required' });
   }
 
-  async function main(jobDescription) {
-    var interviewQuestions = await generateInterviewQuestions(jobDescription);
-    interviewQuestions = interviewQuestions.split('\n');
-    //console.log(interviewQuestions);
-    return interviewQuestions;
-  }
+  try {
+    const model = genAI.getGenerativeModel({ model: "gemini-3-flash-preview" });
+    
+    const prompt = `You are an expert interviewer. Based on this job description, generate exactly 3 interview questions (mix of technical and behavioral).
 
-const jobDescription = ["Software Engineer", "Data Scientist", "Product Manager", "UX Designer", "Marketing Specialist", "Sales Representative", "Financial Analyst", "Human Resources Manager", "Operations Manager", "Customer Support Specialist"];
-main(jobDescription[Math.floor(Math.random() * jobDescription.length)]);
+Job Description:
+${jobDescription}
+
+Return ONLY a JSON array with this exact format (no markdown, no backticks):
+[{"question": "question text here", "type": "technical"}, {"question": "question text here", "type": "behavioral"}]`;
+
+    const result = await model.generateContent(prompt);
+    const text = result.response.text().replace(/```json|```/g, "").trim();
+    const questions = JSON.parse(text);
+
+    res.json({ questions });
+  } catch (error) {
+    console.error('Error generating questions:', error);
+    res.status(500).json({ error: 'Failed to generate questions' });
+  }
+});
+
+const PORT = 3000;
+app.listen(PORT, () => {
+  console.log(`🚀 Server running on http://localhost:${PORT}`);
+});

@@ -11,9 +11,9 @@ const Navbar = () => {
         <motion.div initial={{ opacity: 0, x: -200 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 2 }}className="fixed top-0 left-0 right-0 flex flex-row justify-start items-start h-full w-[15vh] z-50">
             <div className="pt-[3vh] nav-container flex justify-start items-center flex-col gap-[5vh] bg-[#000000]/90 h-[100vh] shadow-lg/15">
                 <img className={`overflow-hidden transition-all rounded-[1vh] ${expanded ? "ml-5 h-[10vh]": "w-0"}`} src={logo} alt="Logo"></img>
-                <Link className={`overflow-hidden transition-all ${expanded ? "mt-[7vh] w-40": "mt-[7vh] w-0"}`} to="/">Home</Link>
-                <Link className={`overflow-hidden transition-all ${expanded ? " w-40": "w-0"}`} to="/pastinterviews">Interviews</Link>
-                <Link className={`overflow-hidden transition-all ${expanded ? " w-40": "w-0"}`} to="/characters">Character</Link>
+                <Link className={`overflow-hidden transition-all text-white ${expanded ? "mt-[7vh] w-40": "mt-[7vh] w-0"}`} to="/">Home</Link>
+                <Link className={`overflow-hidden transition-all text-white ${expanded ? " w-40": "w-0"}`} to="/pastinterviews">Interviews</Link>
+                <Link className={`overflow-hidden transition-all text-white ${expanded ? " w-40": "w-0"}`} to="/characters">Character</Link>
 
             </div>
             <button className="ml-[2vh] mt-[2vh]" onClick={()=>setExpanded(curr=>!curr)}>{

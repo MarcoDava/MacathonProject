@@ -1,17 +1,28 @@
-import { Link } from "react-router";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-const JobDescriptionPage=()=>
-{
-    return(
-        <div className="flex justify-center items-center h-screen flex-col gap-10">
-            <h1 className="text-3xl font-bold">Job Description Page</h1>
-            <p className="text-lg">Copy and paste the job description into here:</p>
-            <input type="text" className="bg-[#FFFFFF] border border-gray-300 rounded-md p-2 w-full max-w-md" placeholder="Job Title" />
-            <button>
-                <Link className="w-48 bg-[#FFFFFF] text-black p-2 rounded-md " to="/interview">Submit</Link>
-            </button>
-        </div>
-    );
-}
+const JobDescriptionPage = () => {
+  const [text, setText] = useState("");
+  const navigate = useNavigate();
 
+  const startInterview = async () => {
+    const response = await fetch("http://localhost:3000/api/generate-questions", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ jobDescription: text }),
+    });
+    const data = await response.json();
+    if (data.questions) {
+      localStorage.setItem("interviewQuestions", JSON.stringify(data.questions));
+      navigate("/interview");
+    }
+  };
+
+  return (
+    <div className="p-10">
+      <textarea onChange={(e) => setText(e.target.value)} className="w-full h-40 text-white p-4 bg-gray-800 border border-gray-700 rounded" placeholder="Paste job description..." />
+      <button onClick={startInterview} className="bg-blue-600 p-3 mt-4">Start Interview</button>
+    </div>
+  );
+};
 export default JobDescriptionPage;
