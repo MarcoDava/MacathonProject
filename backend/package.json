@@ -2,6 +2,14 @@
   "dependencies": {
     "@elevenlabs/elevenlabs-js": "^2.34.0",
     "@google/genai": "^1.40.0",
+<<<<<<< HEAD
     "dotenv": "^17.2.4"
+=======
+    "dotenv": "^17.2.4",
+    "uuid": "^13.0.0"
+  },
+  "devDependencies": {
+    "@types/dotenv": "^6.1.1"
+>>>>>>> c2b3ab93da7502b3296639b6424fa55567b296b0
   }
 }
