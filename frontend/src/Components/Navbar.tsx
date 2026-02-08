@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router";
-import logo from '../assets/react.svg';
+import logo from '../assets/logo.png';
 import { motion } from "motion/react"
 
 
