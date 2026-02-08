@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 
 const PastInterviewsPage = () => {
@@ -27,5 +28,6 @@ const PastInterviewsPage = () => {
     </div>
   );
 };
+
 
 export default PastInterviewsPage;

@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -25,4 +26,5 @@ const JobDescriptionPage = () => {
     </div>
   );
 };
+
 export default JobDescriptionPage;
