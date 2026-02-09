@@ -12,6 +12,7 @@
 
     "@google/generative-ai": "^0.24.1",
     "cors": "^2.8.6",
+    "tsx": "^4.21.0",
 
 
 
